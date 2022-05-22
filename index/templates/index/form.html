@@ -156,6 +156,36 @@
                 <option value="#4c3d45"></option>
                 <option value="#272124"></option>
             </datalist>
+            <h3 class="modal-subtitle">Heading Color:</h3>
+            <input type="color"  value = {{form.headingColor}} list="headingColors" class="form-control" id="input-text-color" />
+            <datalist id="headingColors">
+                <option value="#db4437"></option>
+                <option value="#673ab7"></option>
+                <option value="#3f51b5"></option>
+                <option value="#4285f4"></option>
+                <option value="#03a9f4"></option>
+                <option value="#00bcd4"></option>
+                <option value="#8a8a8a"></option>
+                <option value="#4c3d45"></option>
+                <option value="#272124"></option>
+            </datalist>
+            <h3 class="modal-subtitle">Border Color:</h3>
+            <input type="color"  value = {{form.borderColor}} list="borderColors" class="form-control" id="input-text-color" />
+            <datalist id="borderColors">
+                <option value="#db4437"></option>
+                <option value="#673ab7"></option>
+                <option value="#3f51b5"></option>
+                <option value="#4285f4"></option>
+                <option value="#03a9f4"></option>
+                <option value="#00bcd4"></option>
+                <option value="#8a8a8a"></option>
+                <option value="#4c3d45"></option>
+                <option value="#272124"></option>
+            </datalist>
+            <h3 class="modal-subtitle">Background Image</h3>
+            <input type="file" value="{{form.background_image}}" id="background_image" name="background_image">
+            <h3 class="modal-subtitle">Header Image</h3>
+            <input type="file" value="{{form.header}}" id="header" name="header">
         </div>
     </div>
     <div class="modal" id="setting">

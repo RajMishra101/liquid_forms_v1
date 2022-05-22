@@ -1,4 +1,5 @@
 from email.mime import image
+from email.policy import default
 from turtle import color
 from colorfield.fields import ColorField
 from django.db import models
@@ -41,6 +42,10 @@ class Form(models.Model):
     createdAt = models.DateTimeField(auto_now_add = True)
     updatedAt = models.DateTimeField(auto_now = True)
     questions = models.ManyToManyField(Questions, related_name = "questions")
+    background_image= models.ImageField(upload_to="design",default="bg.png", blank = True, null = True)
+    borderColor=ColorField(default = "#27ff24")
+    headingColor= ColorField(default = "#ff2124")
+    header= models.ImageField(upload_to="header",default="header.png",blank = True, null = True)
 
 class Responses(models.Model):
     response_code = models.CharField(max_length=20)
@@ -51,13 +56,13 @@ class Responses(models.Model):
     response = models.ManyToManyField(Answer, related_name = "response")
 
 class Design(models.Model):
-    background= models.ImageField(upload_to="design")
-    header= models.ImageField(upload_to="design")
-    textColor= ColorField('#FF0000')
-    headingColor= ColorField('#FF0000')
-    borderColor=ColorField('#FF0000')
-    borderradius=ColorField('#FF0000')
+    background_image= models.ImageField(upload_to="design",default="bg.png", blank = True, null = True)
+    header= models.ImageField(upload_to="header",default="header.png",blank = True, null = True)
+    textColor= ColorField(default = "#272124")
+    headingColor= ColorField(default = "#ff2124")
+    borderColor=ColorField(default = "#27ff24")
+    borderradius=ColorField(default = "#000000")
     form=models.ForeignKey(Form, on_delete=models.CASCADE)
 
     def  str (self) :
-        return self.textColor
+        return self.form.title
