@@ -1,6 +1,6 @@
 {% extends 'index/layout.html' %}
 {% block title %}
-{{form.title}} ~ Google Forms CLONE
+{{form.title}} ~ Liquid Form
 {% endblock %}
 {% load static %}
 {% block script %}
@@ -39,9 +39,11 @@
     <div class="container">
         <span id="bg-color" style="display: none;">{{form.background_color}}</span>
         <span id="text-color" style="display: none;">{{form.text_color}}</span>
-        <div class="margin-top-bottom box question-box" id="form-head">
+        <span id="border-color" style="display: none;">{{form.borderColor}}</span>
+        <span id="heading-color" style="display: none;">{{form.headingColor}}</span>
+        <div class="margin-top-bottom box question-box border-clr " id="form-head">
             <div class="form-title-box">
-                <input type="text" class="form-title edit-on-click input-form-title txt-clr" value="{{form.title}}">
+                <input type="text" class="form-title edit-on-click input-form-title header-clr" value="{{form.title}}">
             </div>
             <textarea class="form-description edit-on-click textarea-adjust txt-clr" rows="1" placeholder="Form description" spellCheck = "false"
             id="input-form-description">{{form.description}}</textarea>
@@ -55,7 +57,7 @@
             {% endif %}
         </div>
         {% for question in form.questions.all %}
-        <div class="margin-top-bottom box question-box question" data-id="{{question.id}}">
+        <div class="margin-top-bottom box question-box question border-clr" data-id="{{question.id}}">
             <input type="text" data-id="{{question.id}}" class="question-title edit-on-click input-question" value="{{question.question}}">
             <select class="question-type-select input-question-type" data-id="{{question.id}}" data-origin_type = "{{question.question_type}}">
                 <option value="short" {% if question.question_type == "short" %}selected{% endif %}>Short answer</option>
@@ -157,7 +159,7 @@
                 <option value="#272124"></option>
             </datalist>
             <h3 class="modal-subtitle">Heading Color:</h3>
-            <input type="color"  value = {{form.headingColor}} list="headingColors" class="form-control" id="input-text-color" />
+            <input type="color"  value = {{form.headingColor}} list="headingColors" class="form-control" id="input-heading-color" />
             <datalist id="headingColors">
                 <option value="#db4437"></option>
                 <option value="#673ab7"></option>
@@ -170,7 +172,7 @@
                 <option value="#272124"></option>
             </datalist>
             <h3 class="modal-subtitle">Border Color:</h3>
-            <input type="color"  value = {{form.borderColor}} list="borderColors" class="form-control" id="input-text-color" />
+            <input type="color"  value = {{form.borderColor}} list="borderColors" class="form-control" id="input-border-color" />
             <datalist id="borderColors">
                 <option value="#db4437"></option>
                 <option value="#673ab7"></option>
@@ -182,10 +184,7 @@
                 <option value="#4c3d45"></option>
                 <option value="#272124"></option>
             </datalist>
-            <h3 class="modal-subtitle">Background Image</h3>
-            <input type="file" value="{{form.background_image}}" id="background_image" name="background_image">
-            <h3 class="modal-subtitle">Header Image</h3>
-            <input type="file" value="{{form.header}}" id="header" name="header">
+        
         </div>
     </div>
     <div class="modal" id="setting">

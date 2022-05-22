@@ -5,6 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".txt-clr").forEach(element => {
         element.style.color = document.querySelector("#text-color").innerHTML;
     })
+    document.querySelectorAll(".border-clr").forEach(element => {
+        element.style.color = document.querySelector("#border-color").innerHTML;
+    })
+    document.querySelectorAll(".header-clr").forEach(element => {
+        element.style.color = document.querySelector("#heading-color").innerHTML;
+    })
     document.querySelectorAll(".input-form-title").forEach(title => {
         title.addEventListener("input", function(){
             fetch(`edit_title`, {
@@ -69,6 +75,35 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         })
     })
+
+    document.querySelector("#input-heading-color").addEventListener("input", function(){
+        document.querySelectorAll(".heading-color").forEach(element => {
+            element.style.backgroundColor = this.value;
+        })
+        fetch('edit_header_color', {
+            method: "POST",
+            headers: {'X-CSRFToken': csrf},
+            body: JSON.stringify({
+                "headerColor": this.value
+            })
+        })
+    })
+
+    document.querySelector("#input-border-color").addEventListener("input", function(){
+        document.querySelectorAll(".border-clr").forEach(element => {
+            element.style.borderColor = this.value;
+        })
+        fetch('edit_border_color', {
+            method: "POST",
+            headers: {'X-CSRFToken': csrf},
+            body: JSON.stringify({
+                "borderColor": this.value
+            })
+        })
+    })
+
+   
+
     document.querySelectorAll(".open-setting").forEach(ele => {
         ele.addEventListener('click', () => {
             document.querySelector("#setting").style.display = "block";

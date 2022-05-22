@@ -42,10 +42,9 @@ class Form(models.Model):
     createdAt = models.DateTimeField(auto_now_add = True)
     updatedAt = models.DateTimeField(auto_now = True)
     questions = models.ManyToManyField(Questions, related_name = "questions")
-    background_image= models.ImageField(upload_to="design",default="bg.png", blank = True, null = True)
-    borderColor=ColorField(default = "#27ff24")
-    headingColor= ColorField(default = "#ff2124")
-    header= models.ImageField(upload_to="header",default="header.png",blank = True, null = True)
+   
+    borderColor=models.CharField(max_length=20, default="#272124")
+    headingColor= models.CharField(max_length=20, default="#272124")
 
 class Responses(models.Model):
     response_code = models.CharField(max_length=20)

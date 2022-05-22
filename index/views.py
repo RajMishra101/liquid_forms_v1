@@ -181,6 +181,42 @@ def edit_text_color(request, code):
         formInfo.save()
         return JsonResponse({"message": "Success", "textColor": formInfo.text_color})
 
+def edit_header_color(request, code):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    formInfo = Form.objects.filter(code = code)
+    #Checking if form exists
+    if formInfo.count() == 0:
+        return HttpResponseRedirect(reverse("404"))
+    else: formInfo = formInfo[0]
+    #Checking if form creator is user
+    if formInfo.creator != request.user:
+        return HttpResponseRedirect(reverse("403"))
+    if request.method == "POST":
+        data = json.loads(request.body)
+        formInfo.headingColor = data["headerColor"]
+        formInfo.save()
+        return JsonResponse({"message": "Success", "headerColor": formInfo.headingColor})
+
+def edit_border_color(request, code):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("login"))
+    formInfo = Form.objects.filter(code = code)
+    #Checking if form exists
+    if formInfo.count() == 0:
+        return HttpResponseRedirect(reverse("404"))
+    else: formInfo = formInfo[0]
+    #Checking if form creator is user
+    if formInfo.creator != request.user:
+        return HttpResponseRedirect(reverse("403"))
+    if request.method == "POST":
+        data = json.loads(request.body)
+        formInfo.borderColor = data["borderColor"]
+        formInfo.save()
+        return JsonResponse({"message": "Success", "borderColor": formInfo.borderColor})
+
+
+
 def edit_setting(request, code):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse("login"))
